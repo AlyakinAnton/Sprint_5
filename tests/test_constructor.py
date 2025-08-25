@@ -1,39 +1,26 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from locators import Locators
+from conftest import browser
+from urls import CONSTRUCTOR_PAGE
 
-def test_navigate_buns_section():
-    try:
-        driver = webdriver.Chrome()
-        driver.get("https://stellarburgers.nomoreparties.site/")
-        buns_section = driver.find_element(*Locators.BUNS_SECTION)
+class TestConstructorNavigation:
+    def test_navigate_buns_section(self, browser):
+        browser.get(CONSTRUCTOR_PAGE)
+        buns_section = browser.find_element(*Locators.BUNS_SECTION)
         buns_section.click()
+        section_title = browser.find_element(By.TAG_NAME, "h2").text
+        assert "Булки" in section_title, "Раздел булок не открылся"
 
-        current_url = driver.current_url
-        assert current_url.endswith("/buns"), "Навигация в раздел булок не удалась."
-    finally:
-        driver.quit()
-
-def test_navigate_sauces_section():
-    try:
-        driver = webdriver.Chrome()
-        driver.get("https://stellarburgers.nomoreparties.site/")
-        sauces_section = driver.find_element(*Locators.SAUCES_SECTION)
+    def test_navigate_sauces_section(self, browser):
+        browser.get(CONSTRUCTOR_PAGE)
+        sauces_section = browser.find_element(*Locators.SAUCES_SECTION)
         sauces_section.click()
+        section_title = browser.find_element(By.TAG_NAME, "h2").text
+        assert "Соусы" in section_title, "Раздел соусов не открылся"
 
-        current_url = driver.current_url
-        assert current_url.endswith("/sauces"), "Навигация в раздел соусов не удалась."
-    finally:
-        driver.quit()
-
-def test_navigate_fillings_section():
-    try:
-        driver = webdriver.Chrome()
-        driver.get("https://stellarburgers.nomoreparties.site/")
-        fillings_section = driver.find_element(*Locators.FILLINGS_SECTION)
+    def test_navigate_fillings_section(self, browser):
+        browser.get(CONSTRUCTOR_PAGE)
+        fillings_section = browser.find_element(*Locators.FILLINGS_SECTION)
         fillings_section.click()
-
-        current_url = driver.current_url
-        assert current_url.endswith("/fillings"), "Навигация в раздел начинок не удалась."
-    finally:
-        driver.quit()
+        section_title = browser.find_element(By.TAG_NAME, "h2").text
+        assert "Начинки" in section_title, "Раздел начинок не открылся"

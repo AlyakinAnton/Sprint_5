@@ -1,21 +1,29 @@
 from selenium.webdriver.common.by import By
 
 class Locators:
-    LOGIN_BUTTON = (By.XPATH, "//button[contains(text(), 'Войти')]")  # Кнопка войти
-    REGISTER_BUTTON = (By.XPATH, "//a[@href='/register']")  # Кнопка Регистрация
-    FORGOT_PASSWORD_LINK = (By.XPATH, "//a[@href='/forgot-password']")  # Ссылка Забыл пароль
+    # Элементы главной страницы
+    LOGIN_BUTTON = (By.XPATH, "//button[contains(text(),'Войти')]")
+    REGISTER_BUTTON = (By.XPATH, "//a[@href='/register']")
+    FORGOT_PASSWORD_LINK = (By.XPATH, "//a[@href='/forgot-password']")
 
-    NAME_FIELD = (By.NAME, "name")  # Поле Имя
-    EMAIL_FIELD = (By.NAME, "email")  # Поле Email
-    PASSWORD_FIELD = (By.NAME, "password")  # Поле Пароль
-    SUBMIT_BUTTON = (By.XPATH, "//button[contains(text(), 'Зарегистрироваться')]")  # Кнопка Зарегистрироваться
+    # Поля формы регистрации
+    NAME_FIELD = (By.NAME, "name")
+    EMAIL_FIELD = (By.NAME, "email")
+    PASSWORD_FIELD = (By.NAME, "password")
+    SUBMIT_BUTTON = (By.XPATH, "//button[contains(text(),'Зарегистрироваться')]")
 
-    PERSONAL_ACCOUNT_LINK = (By.XPATH, "//a[@href='/account/profile']")  # Ссылка Личный кабинет
-    CONSTRUCTOR_LINK = (By.XPATH, "//a[@href='/constructor']")  # Ссылка Конструктор
-    LOGO_STELLAR_BURGER = (By.CLASS_NAME, "App_logo__hBwVd")  # Логотип Stellar Burger
+    # Элементы личного кабинета
+    PERSONAL_ACCOUNT_LINK = (By.XPATH, "//a[@href='/account/profile']")
+    CONSTRUCTOR_LINK = (By.XPATH, "//a[@href='/constructor']")
+    LOGOUT_BUTTON = (By.XPATH, "//button[contains(text(),'Выйти')]")
 
-    BUNS_SECTION = (By.XPATH, "//span[contains(text(), 'Булки')]")  # Раздел Булки
-    SAUCES_SECTION = (By.XPATH, "//span[contains(text(), 'Соусы')]")  # Раздел Соусы
-    FILLINGS_SECTION = (By.XPATH, "//span[contains(text(), 'Начинки')]")  # Раздел Начинки
+    # Элементы конструктора
+    BUNS_SECTION = (By.XPATH, "//div[contains(@class,'tab_tab_type_current')]/..//*[contains(text(),'Булки')]")
+    SAUCES_SECTION = (By.XPATH, "//div[contains(@class,'tab_tab_type_current')]/..//*[contains(text(),'Соусы')]")
+    FILLINGS_SECTION = (By.XPATH, "//div[contains(@class,'tab_tab_type_current')]/..//*[contains(text(),'Начинки')]")
 
-    EXIT_BUTTON = (By.XPATH, "//button[contains(text(), 'Выйти')]")  # Кнопка Выход
+    # Сообщения ошибок
+    ERROR_SHORT_PASSWORD = (By.XPATH, "//p[contains(text(),'Минимальная длина пароля — 6 символов.')]")
+
+    # Сообщения успеха
+    SUCCESS_REGISTRATION_MESSAGE = (By.XPATH, "//p[contains(text(),'Вы успешно зарегистрировались')]")
