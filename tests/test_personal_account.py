@@ -1,27 +1,20 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 from locators import Locators
+from conftest import browser
+from urls import PERSONAL_ACCOUNT_PAGE
 
-def test_navigation_to_personal_account():
-    try:
-        driver = webdriver.Chrome()
-        driver.get("https://stellarburgers.nomoreparties.site/")
-        personal_account_link = driver.find_element(*Locators.PERSONAL_ACCOUNT_LINK)
-        personal_account_link.click()
+class TestPersonalAccountNavigation:
+    def test_navigation_to_personal_account(self, browser):
+        browser.get(PERSONAL_ACCOUNT_PAGE)
+        profile_link = browser.find_element(*Locators.PROFILE_LINK)
+        profile_link.click()
 
-        current_url = driver.current_url
-        assert current_url.endswith("/account/profile"), "Переход в Личный кабинет не сработал."
-    finally:
-        driver.quit()
+        current_url = browser.current_url
+        assert current_url.endswith("/account/profile"), "Переход в Личный кабинет не состоялся"
 
-def test_logout():
-    try:
-        driver = webdriver.Chrome()
-        driver.get("https://stellarburgers.nomoreparties.site/account/profile")
-        exit_button = driver.find_element(*Locators.EXIT_BUTTON)
-        exit_button.click()
+    def test_logout(self, browser):
+        browser.get(PERSONAL_ACCOUNT_PAGE)
+        logout_button = browser.find_element(*Locators.LOGOUT_BUTTON)
+        logout_button.click()
 
-        login_button = driver.find_element(*Locators.LOGIN_BUTTON)
-        assert login_button.is_displayed(), "Пользователь не вышел из аккаунта."
-    finally:
-        driver.quit()
+        login_button = browser.find_element(*Locators.LOGIN_BUTTON)
+        assert login_button.is_displayed(), "Пользователь не покинул аккаунт"
