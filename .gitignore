@@ -1,0 +1,15 @@
+*.pyc
+__pycache__/
+chromedriver*
+geckodriver*
+node_modules/
+venv/
+logs/
+reports/
+results/
+output.xml
+screenshots/
+build/
+dist/
+coverage.xml
+.pytest_cache/
